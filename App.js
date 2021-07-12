@@ -4,6 +4,7 @@ import { Focus } from './src/features/focus/Focus';
 import { Timer } from './src/features/timer/Timer.js';
 import { colors } from './src/utils/colors';
 import { spacing } from './src/utils/sizes';
+ 
 
 export default function App() {
   const [focusSubject, setFocusSubject] = useState(null);
@@ -11,7 +12,12 @@ export default function App() {
   return (
     <View style={styles.container}>
       {focusSubject ? (
-        <Timer focusSubject={focusSubject} />
+        <Timer 
+        focusSubject={focusSubject}
+        onTimerEnd={()=> {
+          setFocusSubject(null);            
+        }}
+        />
       ) : (
         <Focus addSubject={setFocusSubject} />
       )}
